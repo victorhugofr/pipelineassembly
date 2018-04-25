@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     }   
     arquivo.clear();
     arquivo.seekg(arquivo.beg);
-    Pipeline *pipeline = new Pipeline[cont];
+    Pipeline *pipeline = new Pipeline[cont]; // aloca baseado em quantas instrucoes foram obtidas
     organiza(nciclos, ninstrucao, instrucoes, cont, pipeline); // organiza a sequencia das instrucoes
     saida(nciclos, ninstrucao, pipeline); //saida final
     delete[] instrucoes;

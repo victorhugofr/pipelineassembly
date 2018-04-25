@@ -49,9 +49,9 @@ Pipeline Instrucoes(string instrucaooriginal) {
         getline(ss, instrucaofinal.opr1, ')');
     }
 
-    instrucaofinal.alvo.erase(remove(instrucaofinal.alvo.begin(), instrucaofinal.alvo.end(), ' '), instrucaofinal.alvo.end());
-    instrucaofinal.opr1.erase(remove(instrucaofinal.opr1.begin(), instrucaofinal.opr1.end(), ' '), instrucaofinal.opr1.end());
-    instrucaofinal.opr2.erase(remove(instrucaofinal.opr2.begin(), instrucaofinal.opr2.end(), ' '), instrucaofinal.opr2.end());
+    instrucaofinal.alvo.erase(remove(instrucaofinal.alvo.begin(), instrucaofinal.alvo.end(), ' '), instrucaofinal.alvo.end()); // remover espaços e , e ()
+    instrucaofinal.opr1.erase(remove(instrucaofinal.opr1.begin(), instrucaofinal.opr1.end(), ' '), instrucaofinal.opr1.end()); // para pegar o opr1, op2 e alvo puros, nao ocorrer de 
+    instrucaofinal.opr2.erase(remove(instrucaofinal.opr2.begin(), instrucaofinal.opr2.end(), ' '), instrucaofinal.opr2.end()); // pegar um () ou espaço sem querer.
     
     return instrucaofinal;
 }
@@ -63,13 +63,13 @@ void organiza(int& nciclos, int& ninstrucao, string *instrucoes, int cont, Pipel
         if(ninstrucao > 0) { 
             pos = pipeline[ninstrucao - 1].posicao + 5;        // anda 1                  
             for(int j = 0; ((j < 3) && (j < i)); j++) {                             
-                if((conflito(pipeline[ninstrucao - (j + 1)], pipeline[ninstrucao])) == true){ // se existir conflito entre as 3 instrucoes apos, some 5*4 na posicao
-                    while((pos - pipeline[ninstrucao - (j + 1)].posicao) < 20){
+                if((conflito(pipeline[ninstrucao - (j + 1)], pipeline[ninstrucao])) == true){ // se existir conflito entre as 3 instrucoes apos, some 5*3 na posicao (ande 3)
+                    while((pos - pipeline[ninstrucao - (j + 1)].posicao) < 20){ // portanto, caso exista conflito de 3 apos, ja vai ter somado 5 e a posicao sera correta.
                         pos += 5;
                     }
                     break;
                 } else{
-                    pos = pipeline[ninstrucao - 1].posicao + 5; // senao, some 5
+                    pos = pipeline[ninstrucao - 1].posicao + 5; // senao, some 5(ande 1)
                 }
             }
             pipeline[ninstrucao].posicao = pos;//salva
