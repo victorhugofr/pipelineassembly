@@ -23,6 +23,12 @@ bool conflito(Pipeline p1, Pipeline p2) {     				// SE RETORNAR TRUE ENTAO EXIS
     else if((p1.opcode == "lw" && p2.opcode == "sw" && p1.alvo == p2.alvo )|| (p1.opcode == "lw" && p2.opcode == "sw" && p1.alvo==p2.opr1) ){
         return true;
     }
+    else if((p1.opcode == "sub" && p2.opcode == "lw" && p1.alvo == p2.opr1 )||( p1.opcode == "add" && p2.opcode == "lw" && p1.alvo==p2.opr1)){
+        return true;
+    }
+    else if((p1.opcode == "lw" && p2.opcode == "sub" && p1.opr1 == p2.alvo )||( p1.opcode == "lw" && p2.opcode == "add" && p1.opr1==p2.alvo)){
+        return true;
+    }
     return false;  // SE RETORNAR FALSE, ENTAO NAO EXISTE
 }
 
