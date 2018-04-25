@@ -1,5 +1,6 @@
 #include "pipeline.hpp"
 #include "processos.hpp"
+#include <string>
 void PrintarInstrucao(Pipeline pipeline) { // SEPARACAO DOS PRINTS(AS ESTRUTURAS MUDAM)
     if((pipeline.opcode == "add") || (pipeline.opcode == "sub")) {
         cout << pipeline.opcode << " " << pipeline.alvo << ", " << pipeline.opr1 << ", " << pipeline.opr2;
@@ -18,6 +19,9 @@ void PrintarInstrucao(Pipeline pipeline) { // SEPARACAO DOS PRINTS(AS ESTRUTURAS
 bool conflito(Pipeline p1, Pipeline p2) {     				// SE RETORNAR TRUE ENTAO EXISTE CONFLITO
     if((p1.alvo != "") && ((p2.opr1 == p1.alvo) || (p2.opr2 == p1.alvo))){ // VERIFICAR 3 DEPOIS
         return true; //aux
+    }
+    else if((p1.opcode == "lw" && p2.opcode == "sw" && p1.alvo == p2.alvo )|| (p1.opcode == "lw" && p2.opcode == "sw" && p1.alvo==p2.opr1) ){
+        return true;
     }
     return false;  // SE RETORNAR FALSE, ENTAO NAO EXISTE
 }

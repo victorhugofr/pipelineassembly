@@ -1,6 +1,6 @@
 PROG = exec
 CC = g++
-CPPFLAGS = -O0 -g -W -Wall -pedantic
+CPPFLAGS = -O0 -g -W -Wall -pedantic -std=c++11
 OBJS = main.o processos.o
 
 $(PROG) : $(OBJS)
@@ -11,4 +11,4 @@ main.o:
 processos.o:
 	$(CC) $(CPPFLAGS) -c processos.cpp
 clean: 
-	del /f *.o exec
+	rm -f *.o exec
