@@ -1,14 +1,14 @@
 PROG = exec
 CC = g++
 CPPFLAGS = -O0 -g -W -Wall -pedantic
-OBJS = main.o pipeline.o
+OBJS = main.o processos.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) -o $(PROG)
 
 main.o:
 	$(CC) $(CPPFLAGS) -c main.cpp
-pipeline.o:
-	$(CC) $(CPPFLAGS) -c pipeline.cpp
+processos.o:
+	$(CC) $(CPPFLAGS) -c processos.cpp
 clean: 
 	del /f *.o exec
